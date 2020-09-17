@@ -49,8 +49,8 @@ foreach ($affi as $key) {
 if (!empty($nom) || !empty($prenom) || !empty($email) || !empty($tel) || !empty($pass) || !empty($Cpass) || preg_match("/^[a-zA-Z'-]*$/", $nom) || preg_match("/^[a-zA-Z'-]*$/", $prenom) || ilter_var($email, FILTER_VALIDATE_EMAIL) || preg_match('/^[0-9]{10}$/', $tel) || $pass == $Cpass) 
  	
   {
-
-$requete="insert into agent (EmailAgent, PasswordAgent,  NomAgent, PrenomAgent, TelAgent, Admin) values ('" . $email . "','" . $pass ."','" . $nom . "','" . $prenom . "','" . $tel . "','')";
+$password = base64_encode($pass);
+$requete="insert into agent (EmailAgent, PasswordAgent,  NomAgent, PrenomAgent, TelAgent, Admin) values ('" . $email . "','" . $password ."','" . $nom . "','" . $prenom . "','" . $tel . "','')";
 
 if ($pdo->exec($requete)) {
 header("Location: tableagent.php?enregi=succes");

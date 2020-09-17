@@ -1,6 +1,5 @@
 <?php 
 session_start();
-session_destroy();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,12 +45,27 @@ session_destroy();
                 <img src="img/logo1.png" width="400px" height="350px" style="text-align: center;">
                 <img src="img/logo2.png" width="400px" height="100px" style="text-align: center;">
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-6" style="display: grid;
+    align-items: center;
+">
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Bienvenue!</h1>
                   </div>
-                  <form class="user" method="get" action="login.php">
+                  <?php 
+                  if(isset($_SESSION['EmailAgent'])) {
+                  
+                  ?>
+                  
+                  <a href="./acceuil.php" class="btn btn-primary btn-user btn-block">  Continue qu'en tant <?php echo $_SESSION['PrenomAgent'] ?></a> 
+
+                  <?php 
+                  } else {
+
+
+
+                    ?>
+                      <form class="user" method="get" action="login.php">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" name="email" id="exampleInputEmail" aria-describedby="emailHelp"  <?php if (isset($_GET['email'])) { ?>  value=" <?php echo($_GET['email']); ?> " <?php }
                       else { ?>
@@ -78,6 +92,12 @@ session_destroy();
                     <hr>
                      
                   </form>
+
+                    <?php
+                  }
+
+                  ?>
+                  
                   <?php 
                   
                   

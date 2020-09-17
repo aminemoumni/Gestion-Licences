@@ -3,7 +3,7 @@ session_start();
     if (!isset($_SESSION['EmailAgent'])) {
   header("Location: index.php?erreur=access");
 }
-}
+
 $pdo = NEW PDO('mysql:host=localhost;dbname=Gestionlicence','root');
 
 ?>

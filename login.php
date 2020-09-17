@@ -4,7 +4,7 @@ session_start();
 $pdo = NEW PDO('mysql:host=localhost;dbname=Gestionlicence','root');
 if (isset($_GET['email']) && isset($_GET['pass']) && !empty($_GET['email']) && !empty($_GET['pass'])) {
 	$requete = "select EmailAgent, PasswordAgent, IdAgent, NomAgent, PrenomAgent, TelAgent, Admin
-	from agent where EmailAgent = :email  ";
+	from agent where EmailAgent = :email ";
 	$stmt = $pdo->prepare($requete);
 	$stmt->bindParam(':email' ,$_GET['email'],PDO::PARAM_STR);
 
@@ -16,7 +16,7 @@ if (isset($_GET['email']) && isset($_GET['pass']) && !empty($_GET['email']) && !
 			from agent where EmailAgent = '" . $resu->EmailAgent . "' AND PasswordAgent = :pass ";
 			
 			$stmt2 = $pdo->prepare($requete1);
-			$stmt2->bindParam(':pass' ,$_GET['pass'],PDO::PARAM_STR);
+			$stmt2->bindParam(':pass' ,base64_encode($_GET['pass']),PDO::PARAM_STR);
 
 			$stmt2->execute();
 			$resu1 = $stmt2->fetchObject();

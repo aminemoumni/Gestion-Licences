@@ -314,7 +314,7 @@ if(strpos($fullUrl, "sup=clean") == true) {
     
     <ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-bottom: -4%; margin-top: 5%;">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="acceuil.php?email=<?php echo($_SESSION['EmailAgent']);?>&pass=<?php echo($_SESSION['PasswordAgent']);?>">Filtrer par client</a>
+                                    <a class="nav-link" href="acceuil.php">Filtrer par client</a>
                                 </li>
                                 
                                 <li class="nav-item">

@@ -43,8 +43,8 @@ if ($pass != $Cpass) {
 if (!empty($nom) || !empty($prenom) || !empty($email) || !empty($tel) || !empty($pass) || !empty($Cpass) || preg_match("/^[a-zA-Z'-]*$/", $nom) || preg_match("/^[a-zA-Z'-]*$/", $prenom) || ilter_var($email, FILTER_VALIDATE_EMAIL) || preg_match('/^[0-9]{10}$/', $tel) || $pass == $Cpass) 
  	
   {
-
-$requete="UPDATE agent SET  NomAgent = '" . $nom . "',  PrenomAgent = '" . $prenom . "', TelAgent = '" . $tel . "' , PasswordAgent = '" . $pass . "' WHERE IdAgent = " . $_SESSION['IdAgent'] . "";
+$password = base64_encode($pass);
+$requete="UPDATE agent SET  NomAgent = '" . $nom . "',  PrenomAgent = '" . $prenom . "', TelAgent = '" . $tel . "' , PasswordAgent = '" . $password . "' WHERE IdAgent = " . $_SESSION['IdAgent'] . "";
 
 if ($pdo->exec($requete)) {
 $_SESSION['PasswordAgent'] = $Cpass;

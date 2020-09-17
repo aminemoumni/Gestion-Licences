@@ -7,15 +7,17 @@ $pdo = NEW PDO('mysql:host=localhost;dbname=gestionlicence','root');
 if (isset($_GET['search'])) 
   $req = "select IdLicence, NomClient, LibelleProduit,DesignationProduit, LibelleTypeLicence, Garantie, DateDebut, DateFin, NomAgent, PrenomAgent, NomEnregistrement, NomContactClient, Numerodeserie
 from licence NATURAL JOIN agent NATURAL JOIN client NATURAL JOIN contactclient NATURAL JOIN produit NATURAL JOIN typelicence WHERE 
+ Validation = 'Active' AND (
+
 LibelleProduit  LIKE '%" . $_GET['search'] . "%' 
 or NomClient like '%" . $_GET['search'] . "%'
 or DateFin like '%" . $_GET['search'] . "%'
 or DateDebut like '%" . $_GET['search'] . "%'
 or Numerodeserie like '%" . $_GET['search'] . "%'
-or LibelleTypeLicence like '%" . $_GET['search'] . "%'
+or LibelleTypeLicence like '%" . $_GET['search'] . "%')
 
 
-AND Validation = 'Active'";
+";
 $resu = $pdo->query($req);
 $affi = $resu->fetchAll(PDO::FETCH_OBJ);
 ;
